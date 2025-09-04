@@ -1,15 +1,17 @@
 import dotenv from "dotenv";
-import { createClient } from "@libsql/client";
+import { createClient } from "@libsql/client/web";
+
+// bug error node_modules หาไฟล์ไม่เจอเลยเพิ่ม /web "@libsql/client/web"
 
 dotenv.config();
 
 export const db = createClient({
-    url: process.env.TURSO_DB_URL,
-    authToken: process.env.TURSO_AUTH_TOKEN,
-  });
+  url: process.env.TURSO_DB_URL,
+  authToken: process.env.TURSO_AUTH_TOKEN,
+});
 
 export const connectTurso = async () => {
-    // Ping Turso
+  // Ping Turso
   try {
     await db.execute("SELECT 1");
     console.log("Checked successful communication with Turso database ✅");
@@ -37,4 +39,4 @@ export const connectTurso = async () => {
       email TEXT UNIQUE NOT NULL
     );
   `);
-}
+};

@@ -115,11 +115,12 @@ router.post("/auth/cookie/login", async (req, res) => {
     // Set token in HttpOnly cookie
     // res.cookie("accessToken", token, {
     //   httpOnly: true,
-    //   secure: false,
-    //   sameSite: "Strict", // helps prevent CSRF
+    //   secure: true,
+    //   sameSite: "none", // helps prevent CSRF
     //   path: "/",
     //   maxAge: 60 * 60 * 1000, // 1 hour in milliseconds
     // });
+
     res.cookie("accessToken", token, {
       httpOnly: true,
       secure: isProd, // only send over HTTPS in prod
